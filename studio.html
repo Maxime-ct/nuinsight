@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>nu insight studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#111;--mut:#6b6b6b;--line:#e3e3e3;--card:#f6f6f6;--acc:#111;--on:#fff;--bad:#c0392b;--ok:#1e8e5a}
+@media(prefers-color-scheme:dark){:root{--bg:#0c0c0c;--ink:#f2f2f2;--mut:#9a9a9a;--line:#2a2a2a;--card:#161616;--acc:#f2f2f2;--on:#0c0c0c;--bad:#ff7a6b;--ok:#5fd3a0}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 'Archivo',system-ui,sans-serif}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 20px;background:var(--bg);border-bottom:1px solid var(--line)}
+.top h1{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em;margin-right:auto}
+.status{font-size:13px;color:var(--mut)}.status.ok{color:var(--ok)}.status.bad{color:var(--bad)}
+.btn{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:600}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.sm{padding:5px 11px;font-size:13px}
+.tabs{display:flex;gap:6px;padding:14px 20px 0}
+.tabs button{padding:8px 16px;border-radius:999px;border:1px solid transparent;background:none;cursor:pointer;font-weight:600;color:var(--mut)}
+.tabs button.on{background:var(--card);border-color:var(--line);color:var(--ink)}
+.wrap{display:grid;grid-template-columns:260px 1fr;gap:24px;padding:20px}
+@media(max-width:800px){.wrap{grid-template-columns:1fr}}
+.side{display:flex;flex-direction:column;gap:6px}
+.al{display:flex;justify-content:space-between;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:none;text-align:left;cursor:pointer}
+.al.on{background:var(--card);border-color:var(--ink)}.al small{color:var(--mut)}
+.panel{min-width:0}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:18px}
+label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mut);font-weight:600}
+input[type=text],input[type=date],input[type=password],input[type=number]{padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);min-width:0}
+.grow{flex:1 1 220px}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.ph{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);display:flex;flex-direction:column}
+.ph img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#8884;display:block}
+.ph .b{padding:8px;display:flex;flex-direction:column;gap:6px}
+.ph .acts{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mut)}
+.tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--acc);color:var(--on)}
+.empty{color:var(--mut);padding:40px 0}
+.opt{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+dialog{border:1px solid var(--line);border-radius:18px;background:var(--bg);color:var(--ink);width:min(440px,92vw);padding:24px}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog h2{margin:0 0 4px}dialog p{margin:0 0 16px;color:var(--mut);font-size:14px}
+dialog form{display:flex;flex-direction:column;gap:12px}
+dialog .row{margin:8px 0 0;justify-content:flex-end}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>nu insight studio</h1>
+  <span class="status" id="status">Not connected</span>
+  <button class="btn" id="connectBtn" type="button">Connect</button>
+  <button class="btn primary" id="publishBtn" type="button" disabled>Publish</button>
+</div>
+<div class="tabs"><button class="on" data-tab="albums" type="button">Albums</button><button data-tab="poll" type="button">Poll</button></div>
+<div id="app"></div>
+
+<dialog id="dlg">
+  <form method="dialog" id="cform">
+    <h2>Connect to GitHub</h2>
+    <p>Your details stay in this browser only. They are never written to the site.</p>
+    <label>GitHub username<input type="text" id="cOwner" autocomplete="off"></label>
+    <label>Repository name<input type="text" id="cRepo" autocomplete="off"></label>
+    <label>Branch<input type="text" id="cBranch" value="main"></label>
+    <label>Token (starts with github_pat_)<input type="password" id="cToken" autocomplete="off"></label>
+    <div class="row"><button class="btn" value="cancel" type="button" id="cCancel">Cancel</button><button class="btn primary" type="submit" id="cSave">Save and load</button></div>
+  </form>
+</dialog>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+const two = (n) => String(n).padStart(2,"0");
+const stamp = (ms) => { const d = new Date(ms); return d.getFullYear()+"-"+two(d.getMonth()+1)+"-"+two(d.getDate())+"T"+two(d.getHours())+":"+two(d.getMinutes()); };
+const today = () => stamp(Date.now()).slice(0,10);
+const slug = (s) => s.toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") || "album";
+
+let cfg = {}; try { cfg = JSON.parse(localStorage.getItem("ni-studio") || "{}"); } catch (e) {}
+let data = { clipsFolder:"clips/", albums:[], clips:[], poll:{ question:"", options:[] } };
+let pending = {};   // "folder+file" -> Blob waiting to be uploaded
+let previews = {};  // "folder+file" -> local preview URL
+let tab = "albums", cur = 0, dirty = false, connected = false;
+
+const status = (t, cls) => { const el = $("#status"); el.textContent = t; el.className = "status " + (cls || ""); };
+const touch = () => { dirty = true; $("#publishBtn").disabled = !connected; };
+
+/* ---------- GitHub ---------- */
+async function gh(path, opt = {}) {
+  const r = await fetch("https://api.github.com/repos/" + cfg.owner + "/" + cfg.repo + "/contents/" + path + (opt.method ? "" : "?ref=" + cfg.branch), {
+    ...opt, headers: { Authorization: "Bearer " + cfg.token, Accept: "application/vnd.github+json", ...(opt.headers || {}) }
+  });
+  if (!r.ok && r.status !== 404) throw new Error(r.status === 401 ? "Token was rejected" : r.status === 403 ? "Token has no write access to this repo" : "GitHub error " + r.status);
+  return r.status === 404 ? null : r.json();
+}
+const b64 = (blob) => new Promise((res) => { const f = new FileReader(); f.onload = () => res(f.result.split(",")[1]); f.readAsDataURL(blob); });
+function textB64(t) { const bytes = new TextEncoder().encode(t); let bin = ""; bytes.forEach((b) => bin += String.fromCharCode(b)); return btoa(bin); }
+function fromB64Text(b) { const bin = atob(b.replace(/\n/g, "")); return new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))); }
+
+async function loadFeed() {
+  if (!(cfg.owner && cfg.repo && cfg.token)) { status("Not connected"); return; }
+  status("Loading…");
+  try {
+    const f = await gh("feed.json");
+    if (f && f.content) data = Object.assign({ clipsFolder:"clips/", albums:[], clips:[], poll:{ question:"", options:[] } }, JSON.parse(fromB64Text(f.content)));
+    connected = true; dirty = false; pending = {}; cur = 0;
+    status("Connected to " + cfg.owner + "/" + cfg.repo, "ok");
+  } catch (e) { connected = false; status(e.message, "bad"); }
+  $("#publishBtn").disabled = true; draw();
+}
+
+async function put(path, content, msg) {
+  const old = await gh(path);
+  const r = await gh(path, { method:"PUT", body: JSON.stringify({ message: msg, content, branch: cfg.branch, ...(old && old.sha ? { sha: old.sha } : {}) }) });
+  return r;
+}
+
+async function publish() {
+  const keys = Object.keys(pending);
+  $("#publishBtn").disabled = true;
+  try {
+    let n = 0;
+    for (const k of keys) {
+      status("Uploading photo " + (++n) + " of " + keys.length + "…");
+      await put(k, await b64(pending[k]), "Studio: add " + k);
+      delete pending[k];
+    }
+    status("Saving feed…");
+    await put("feed.json", textB64(JSON.stringify(data, null, 2) + "\n"), "Studio: update feed");
+    dirty = false;
+    status("Published. The site updates after Vercel redeploys (usually under a minute).", "ok");
+  } catch (e) { status("Could not publish: " + e.message, "bad"); $("#publishBtn").disabled = false; }
+}
+
+/* ---------- photos: shrink to 1600px JPEG before upload ---------- */
+async function shrink(file) {
+  const bmp = await createImageBitmap(file), max = 1600, k = Math.min(1, max / Math.max(bmp.width, bmp.height));
+  const c = document.createElement("canvas"); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+  c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+  return new Promise((res) => c.toBlob(res, "image/jpeg", 0.86));
+}
+const photoSrc = (a, p) => previews[a.folder + p.file] || a.folder + p.file;
+
+async function addPhotos(files) {
+  const a = data.albums[cur]; if (!a) return;
+  const list = [...files].sort((x, y) => x.lastModified - y.lastModified);
+  status("Preparing " + list.length + " photo" + (list.length === 1 ? "" : "s") + "…");
+  for (const f of list) {
+    try {
+      const blob = await shrink(f);
+      const name = Date.now().toString(36) + Math.random().toString(36).slice(2, 5) + ".jpg";
+      pending[a.folder + name] = blob; previews[a.folder + name] = URL.createObjectURL(blob);
+      a.photos.push({ file: name, caption: "", comment: "", taken: stamp(f.lastModified) });
+    } catch (e) { status("Could not read " + f.name, "bad"); }
+  }
+  touch(); status(connected ? "Ready to publish" : "Connect to GitHub to publish", connected ? "ok" : "bad"); draw();
+}
+
+/* ---------- screens ---------- */
+function draw() { tab === "albums" ? drawAlbums() : drawPoll(); }
+
+function drawAlbums() {
+  const a = data.albums[cur];
+  $("#app").innerHTML = '<div class="wrap"><div class="side">' +
+    data.albums.map((x, i) => '<button class="al' + (i === cur ? " on" : "") + '" data-al="' + i + '" type="button"><span>' + esc(x.title || "Untitled") + '</span><small>' + x.photos.length + '</small></button>').join("") +
+    '<button class="btn" id="newAl" type="button">+ New album</button></div><div class="panel">' + (a ? albumPanel(a) : '<p class="empty">No albums yet. Create one to start adding photos.</p>') + '</div></div>';
+}
+
+function albumPanel(a) {
+  return '<div class="row"><label class="grow">Event name<input type="text" id="aTitle" value="' + esc(a.title) + '"></label>' +
+    '<label>Date<input type="date" id="aDate" value="' + esc(a.date) + '"></label>' +
+    '<label class="btn primary" style="flex-direction:row;color:var(--on);cursor:pointer">Add photos<input type="file" id="aFiles" accept="image/*" multiple hidden></label>' +
+    '<button class="btn" id="delAl" type="button">Delete album</button></div>' +
+    (a.photos.length ? '<div class="photos">' + a.photos.map((p, i) =>
+      '<div class="ph"><img src="' + esc(photoSrc(a, p)) + '" alt="" loading="lazy"><div class="b"><input type="text" data-cap="' + i + '" value="' + esc(p.caption) + '" placeholder="Caption (optional)">' +
+      '<div class="acts"><span>' + (pending[a.folder + p.file] ? '<span class="tag">New</span>' : "") + (a.cover === a.folder + p.file ? ' <span class="tag">Cover</span>' : "") + '</span>' +
+      '<span><button class="btn sm" data-cover="' + i + '" type="button">Cover</button> <button class="btn sm" data-rm="' + i + '" type="button">Remove</button></span></div></div></div>').join("") + '</div>'
+      : '<p class="empty">This album has no photos yet. Albums with no photos are hidden on the site.</p>');
+}
+
+function drawPoll() {
+  const p = data.poll = data.poll || { question:"", options:[] };
+  $("#app").innerHTML = '<div class="wrap" style="grid-template-columns:1fr"><div class="panel" style="max-width:560px"><div class="row"><label class="grow">Poll question<input type="text" id="pQ" value="' + esc(p.question) + '"></label></div>' +
+    p.options.map((o, i) => '<div class="opt"><input type="text" class="grow" data-ot="' + i + '" value="' + esc(o.text) + '" placeholder="Option"><input type="number" min="0" style="width:90px" data-ov="' + i + '" value="' + (+o.votes || 0) + '" aria-label="Starting votes"><button class="btn sm" data-orm="' + i + '" type="button">Remove</button></div>').join("") +
+    '<button class="btn" id="addOpt" type="button">+ Add option</button><p class="empty" style="padding:16px 0 0">Visitors\u2019 votes are only stored in their own browser. The numbers here are the starting counts shown to everyone.</p></div></div>';
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.tab) { tab = t.dataset.tab; document.querySelectorAll(".tabs button").forEach((b) => b.classList.toggle("on", b === t)); draw(); }
+  else if (t.dataset.al) { cur = +t.dataset.al; draw(); }
+  else if (t.id === "newAl") {
+    const title = prompt("Event name"); if (!title) return;
+    let id = slug(title); while (data.albums.some((x) => x.id === id)) id += "-2";
+    data.albums.unshift({ id, title, date: today(), folder: "photos/" + id + "/", photos: [] }); cur = 0; touch(); draw();
+  }
+  else if (t.id === "delAl") { if (confirm("Delete this album from the site? Photo files stay in your repo.")) { data.albums.splice(cur, 1); cur = 0; touch(); draw(); } }
+  else if (t.dataset.rm) { const a = data.albums[cur], p = a.photos.splice(+t.dataset.rm, 1)[0]; delete pending[a.folder + p.file]; if (a.cover === a.folder + p.file) delete a.cover; touch(); draw(); }
+  else if (t.dataset.cover) { const a = data.albums[cur]; a.cover = a.folder + a.photos[+t.dataset.cover].file; touch(); draw(); }
+  else if (t.id === "addOpt") { data.poll.options.push({ text:"", votes:0 }); touch(); draw(); }
+  else if (t.dataset.orm) { data.poll.options.splice(+t.dataset.orm, 1); touch(); draw(); }
+});
+document.addEventListener("input", (e) => {
+  const t = e.target, a = data.albums[cur];
+  if (t.id === "aTitle") { a.title = t.value; touch(); document.querySelector('[data-al="' + cur + '"] span').textContent = t.value || "Untitled"; }
+  else if (t.id === "aDate") { a.date = t.value; touch(); }
+  else if (t.dataset.cap) { a.photos[+t.dataset.cap].caption = t.value; touch(); }
+  else if (t.id === "pQ") { data.poll.question = t.value; touch(); }
+  else if (t.dataset.ot) { data.poll.options[+t.dataset.ot].text = t.value; touch(); }
+  else if (t.dataset.ov) { data.poll.options[+t.dataset.ov].votes = Math.max(0, +t.value || 0); touch(); }
+});
+document.addEventListener("change", (e) => { if (e.target.id === "aFiles") addPhotos(e.target.files); });
+$("#publishBtn").onclick = publish;
+$("#connectBtn").onclick = () => { $("#cOwner").value = cfg.owner || ""; $("#cRepo").value = cfg.repo || ""; $("#cBranch").value = cfg.branch || "main"; $("#cToken").value = cfg.token || ""; $("#dlg").showModal(); };
+$("#cCancel").onclick = () => $("#dlg").close();
+$("#cform").onsubmit = () => {
+  cfg = { owner: $("#cOwner").value.trim(), repo: $("#cRepo").value.trim(), branch: $("#cBranch").value.trim() || "main", token: $("#cToken").value.trim() };
+  try { localStorage.setItem("ni-studio", JSON.stringify(cfg)); } catch (e) {}
+  loadFeed();
+};
+addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+draw(); loadFeed();
+</script>
+</body>
+</html>
