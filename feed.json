@@ -1,5 +1,27 @@
 {
+  "clipsFolder": "clips/",
   "albums": [
+    {
+      "id": "test-alb",
+      "title": "TEST ALB",
+      "date": "2026-10-28",
+      "folder": "photos/test-alb/",
+      "photos": [
+        {
+          "file": "mvs98jg0kuq.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-04-24T12:12"
+        },
+        {
+          "file": "mvs9asifzs8.jpg",
+          "caption": "MABOTI",
+          "comment": "",
+          "taken": "2026-03-04T15:30"
+        }
+      ],
+      "cover": "photos/test-alb/mvs98jg0kuq.jpg"
+    },
     {
       "id": "2026-nu-vision-career-fair-week",
       "title": "2026 NU VISION CAREER FAIR WEEK",
@@ -349,7 +371,6 @@
       ]
     }
   ],
-  "clipsFolder": "clips/",
   "clips": [],
   "poll": {
     "question": "Which event should we cover next?",
