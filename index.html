@@ -365,7 +365,7 @@ ALBUMS = (SITE.albums || []).map((a) => {
   const album = { ...a, dateObj: new Date(a.date + "T09:00") };
   album.photos = (a.photos || []).map((p, i) => {
     const photo = {
-      id: a.id + "-" + (i + 1),
+      id: a.id + "~" + p.file,
       album: a.id,
       albumTitle: a.title,
       title: p.caption || a.title + " " + (i + 1),
@@ -437,12 +437,37 @@ function monthButtons(current) {
 let liked = new Set();
 try { liked = new Set(JSON.parse(localStorage.getItem("ni-liked") || "[]")); } catch (e) {}
 
-function likeCount(p) { return p.baseLikes + (liked.has(p.id) ? 1 : 0); }
+/* shared like counts live in Supabase (table "likes"). If it can't be reached, likes fall back to this browser only. */
+const SB_URL = "https://gsbwxaejjrbjrapihdbu.supabase.co";
+const SB_KEY = "sb_publishable_9wiNfto8Pi4VwtrCEP_cFQ_xzHmUVdX";
+const sbHead = { apikey: SB_KEY, "Content-Type": "application/json" };
+let shared = null;   /* photo id -> count for everyone; null until loaded */
+
+function likeCount(p) { return shared ? (shared[p.id] || 0) : p.baseLikes + (liked.has(p.id) ? 1 : 0); }
+const repaintLikes = () => document.querySelectorAll("[data-like]").forEach((b) => { if (photoById[b.dataset.like]) paintLike(b); });
+
+async function loadShared() {
+  try {
+    const r = await fetch(SB_URL + "/rest/v1/likes?select=photo_id,n", { headers: sbHead });
+    if (!r.ok) return;
+    const next = {};
+    (await r.json()).forEach((x) => { next[x.photo_id] = x.n; });
+    const changed = JSON.stringify(next) !== JSON.stringify(shared);
+    shared = next;
+    if (changed) { repaintLikes(); if (location.hash.startsWith("#/recap")) render(); }
+  } catch (e) { /* stay on browser-only likes */ }
+}
 
 function toggleLike(id) {
-  if (liked.has(id)) liked.delete(id); else liked.add(id);
+  const delta = liked.has(id) ? -1 : 1;
+  if (delta === 1) liked.add(id); else liked.delete(id);
   try { localStorage.setItem("ni-liked", JSON.stringify([...liked])); } catch (e) {}
-  document.querySelectorAll('[data-like="' + id + '"]').forEach(paintLike);
+  if (shared) shared[id] = Math.max(0, (shared[id] || 0) + delta);
+  repaintLikes();
+  fetch(SB_URL + "/rest/v1/rpc/bump_like", { method: "POST", headers: sbHead, body: JSON.stringify({ pid: id, delta }) })
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then((n) => { if (shared) { shared[id] = n; repaintLikes(); } })
+    .catch(() => {});
 }
 
 function paintLike(btn) {
@@ -635,6 +660,8 @@ async function load() {
 }
 render();
 load();
+loadShared();
 setInterval(load, 20000);
+setInterval(loadShared, 30000);
 
 </script></body></html>
