@@ -234,8 +234,15 @@
           "caption": "",
           "comment": "",
           "taken": ""
+        },
+        {
+          "file": "mw1u7s4uszn.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-03-06T12:53"
         }
-      ]
+      ],
+      "cover": "images/inter-house-sports/mw1u7s4uszn.jpg"
     },
     {
       "id": "science-fair",
@@ -402,8 +409,15 @@
           "caption": "",
           "comment": "",
           "taken": ""
+        },
+        {
+          "file": "mw1u9r3hpgy.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-03-04T15:17"
         }
-      ]
+      ],
+      "cover": "images/opening-assembly/mw1u9r3hpgy.jpg"
     }
   ],
   "clips": [],
