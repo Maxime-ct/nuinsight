@@ -315,67 +315,19 @@
       "folder": "images/opening-assembly/",
       "photos": [
         {
-          "file": "01.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": ""
-        },
-        {
-          "file": "02.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": ""
-        },
-        {
-          "file": "03.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": ""
-        },
-        {
-          "file": "04.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": ""
-        },
-        {
-          "file": "05.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": ""
-        },
-        {
-          "file": "06.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": ""
-        },
-        {
-          "file": "07.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": ""
-        },
-        {
-          "file": "08.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": ""
-        },
-        {
-          "file": "09.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": ""
-        },
-        {
           "file": "mw1u9r3hpgy.jpg",
           "caption": "",
           "comment": "",
           "taken": "2026-03-04T15:17"
+        },
+        {
+          "file": "mw873vtn304.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-03-04T15:46"
         }
       ],
-      "cover": "images/opening-assembly/mw1u9r3hpgy.jpg"
+      "cover": "images/opening-assembly/mw873vtn304.jpg"
     }
   ],
   "clips": [],
