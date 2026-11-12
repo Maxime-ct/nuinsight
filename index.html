@@ -382,6 +382,7 @@ ALBUMS = (SITE.albums || []).map((a) => {
       date: new Date(p.taken || a.date + "T09:00"),
       src: p.url || (a.folder || "") + p.file,
       seed: (i * 7 + a.id.length * 13) % 10,      // only used for the grey placeholder
+      added: p.added || 0,                          // when it was uploaded in Studio
       baseLikes: 0
     };
     PHOTOS.push(photo);
@@ -566,7 +567,7 @@ function homePage() {
       '<h1>' + latest.title + '</h1><p class="sub">' + latest.photos.length + ' photos</p>' +
       '<a class="pill" href="#/album/' + latest.id + '">Open album</a></div></section>' +
     '<div id="weekly">' + weeklyBlock() + '</div>' +
-    '<section class="sec"><div class="sec-head"><h2>Just Added</h2><a class="sub" href="#/albums">All albums</a></div>' + wall(PHOTOS.slice(0, 12)) + '</section>' +
+    '<section class="sec"><div class="sec-head"><h2>Just Added</h2><a class="sub" href="#/albums">All albums</a></div>' + wall([...PHOTOS].sort((a, b) => (b.added - a.added) || (b.date - a.date)).slice(0, 12)) + '</section>' +
     (CLIPS.length ? '<section class="sec"><div class="sec-head"><h2>clips</h2><a class="sub" href="#/clips">All clips</a></div><div class="clips">' + CLIPS.slice(0, 8).map(clipCard).join("") + '</div></section>' : "") +
     pollBlock() +
     '<section class="sec"><div class="banner"><div><p>Month recap</p><h2>' + monthName(recapKey).toLowerCase() + '</h2></div><a class="pill" href="#/recap/' + recapKey + '">See the recap</a></div></section>';
