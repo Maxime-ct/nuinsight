@@ -201,7 +201,7 @@ function drawPoll() {
   const p = data.poll = data.poll || { question:"", options:[] };
   $("#app").innerHTML = '<div class="wrap" style="grid-template-columns:1fr"><div class="panel" style="max-width:560px"><div class="row"><label class="grow">Poll question<input type="text" id="pQ" value="' + esc(p.question) + '"></label></div>' +
     p.options.map((o, i) => '<div class="opt"><input type="text" class="grow" data-ot="' + i + '" value="' + esc(o.text) + '" placeholder="Option"><input type="number" min="0" style="width:90px" data-ov="' + i + '" value="' + (+o.votes || 0) + '" aria-label="Starting votes"><button class="btn sm" data-orm="' + i + '" type="button">Remove</button></div>').join("") +
-    '<button class="btn" id="addOpt" type="button">+ Add option</button><p class="empty" style="padding:16px 0 0">Visitors\u2019 votes are only stored in their own browser. The numbers here are the starting counts shown to everyone.</p></div></div>';
+    '<button class="btn" id="addOpt" type="button">+ Add option</button><p class="empty" style="padding:16px 0 0">Votes are counted for everyone. The numbers on the right are extra starting votes added on top, so leave them at 0 for a real count. Changing a question or option\u2019s wording starts its count again from zero.</p></div></div>';
 }
 
 /* ---------- events ---------- */
