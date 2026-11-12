@@ -1,39 +1,5 @@
 {
-  "clipsFolder": "clips/",
   "albums": [
-    {
-      "id": "test-alb",
-      "title": "CASUALS",
-      "date": "2026-10-28",
-      "folder": "photos/test-alb/",
-      "photos": [
-        {
-          "file": "mvs98jg0kuq.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-04-24T12:12"
-        },
-        {
-          "file": "mvs9asifzs8.jpg",
-          "caption": "MABOTI",
-          "comment": "",
-          "taken": "2026-03-04T15:30"
-        },
-        {
-          "file": "mvs9eukj2zu.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-03-04T15:57"
-        },
-        {
-          "file": "mvsadqx7b0z.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-03-04T15:08"
-        }
-      ],
-      "cover": "photos/test-alb/mvs98jg0kuq.jpg"
-    },
     {
       "id": "2026-nu-vision-career-fair-week",
       "title": "2026 NU VISION CAREER FAIR WEEK",
@@ -41,127 +7,36 @@
       "folder": "photos/2026-nu-vision-career-fair-week/",
       "photos": [
         {
-          "file": "mvwly3julh6.jpg",
-          "caption": "Career Fair Week",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwlzphco7q.jpg",
+          "file": "IMG_0128.JPG",
           "caption": "",
           "comment": "",
-          "taken": "2026-10-31T18:18"
+          "taken": "2026-10-26T09:00"
         },
         {
-          "file": "mvwm02pxw60.jpg",
+          "file": "IMG_0129.JPG",
           "caption": "",
           "comment": "",
-          "taken": "2026-10-31T18:18"
+          "taken": "2026-10-08T14:37"
         },
         {
-          "file": "mvwm0mfopuv.jpg",
+          "file": "IMG_0525.JPG",
           "caption": "",
           "comment": "",
-          "taken": "2026-10-31T18:18"
+          "taken": "2026-10-09T16:10"
         },
         {
-          "file": "mvwm19y1rfd.jpg",
+          "file": "IMG_0412.JPG",
           "caption": "",
           "comment": "",
-          "taken": "2026-10-31T18:18"
+          "taken": "2026-10-09T15:15"
         },
         {
-          "file": "mvwm1ijop6n.jpg",
+          "file": "IMG_9786.JPG",
           "caption": "",
           "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm23bsjz7.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm2lsi9jb.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm3e51j1j.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm3qqmad6.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm4i24sfr.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm50h9y8b.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm5c8gbil.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm5raxwr4.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm61fvv0u.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm6ebsr63.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm6owgb02.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm73qqtlc.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm7bojcyd.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
-        },
-        {
-          "file": "mvwm7ju2spq.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-10-31T18:18"
+          "taken": "2026-10-06T14:44"
         }
-      ],
-      "cover": "photos/2026-nu-vision-career-fair-week/mvwm4i24sfr.jpg"
+      ]
     },
     {
       "id": "inter-house-sports",
@@ -170,37 +45,72 @@
       "folder": "images/inter-house-sports/",
       "photos": [
         {
-          "file": "mw1u7s4uszn.jpg",
+          "file": "01.jpg",
           "caption": "",
           "comment": "",
-          "taken": "2026-03-06T12:53"
+          "taken": ""
         },
         {
-          "file": "mw1ue4au4pa.jpg",
+          "file": "02.jpg",
           "caption": "",
           "comment": "",
-          "taken": "2026-03-06T10:55"
+          "taken": ""
         },
         {
-          "file": "mw1ue4vjwm2.jpg",
+          "file": "03.jpg",
           "caption": "",
           "comment": "",
-          "taken": "2026-03-06T12:50"
+          "taken": ""
         },
         {
-          "file": "mw1ue5gc397.jpg",
+          "file": "04.jpg",
           "caption": "",
           "comment": "",
-          "taken": "2026-03-13T14:47"
+          "taken": ""
         },
         {
-          "file": "mw1ue61zxsg.jpg",
+          "file": "05.jpg",
           "caption": "",
           "comment": "",
-          "taken": "2026-03-13T14:48"
+          "taken": ""
+        },
+        {
+          "file": "06.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "07.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "08.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "09.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "10.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "11.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
         }
-      ],
-      "cover": "images/inter-house-sports/mw1u7s4uszn.jpg"
+      ]
     },
     {
       "id": "science-fair",
@@ -252,6 +162,74 @@
         },
         {
           "file": "08.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        }
+      ]
+    },
+    {
+      "id": "founders-day",
+      "title": "Founders day",
+      "date": "2026-09-12",
+      "folder": "images/founders-day/",
+      "photos": [
+        {
+          "file": "01.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "02.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "03.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "04.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "05.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "06.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "07.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "08.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "09.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "10.jpg",
           "caption": "",
           "comment": "",
           "taken": ""
@@ -315,36 +293,78 @@
       "folder": "images/opening-assembly/",
       "photos": [
         {
-          "file": "mw1u9r3hpgy.jpg",
+          "file": "01.jpg",
           "caption": "",
           "comment": "",
-          "taken": "2026-03-04T15:17"
+          "taken": ""
         },
         {
-          "file": "mw873vtn304.jpg",
+          "file": "02.jpg",
           "caption": "",
           "comment": "",
-          "taken": "2026-03-04T15:46"
+          "taken": ""
+        },
+        {
+          "file": "03.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "04.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "05.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "06.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "07.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "08.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
+        },
+        {
+          "file": "09.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": ""
         }
-      ],
-      "cover": "images/opening-assembly/mw873vtn304.jpg"
+      ]
     }
   ],
+  "clipsFolder": "clips/",
   "clips": [],
   "poll": {
     "question": "Which event should we cover next?",
     "options": [
       {
         "text": "Debate final",
-        "votes": 14
+        "votes": 0
       },
       {
         "text": "Drama night",
-        "votes": 22
+        "votes": 0
       },
       {
         "text": "Class trip",
-        "votes": 31
+        "votes": 0
       }
     ]
   }
