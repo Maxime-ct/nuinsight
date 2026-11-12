@@ -183,7 +183,33 @@
       "title": "Inter-house sports",
       "date": "2026-10-03",
       "folder": "images/inter-house-sports/",
-      "photos": []
+      "photos": [
+        {
+          "file": "mwdyf38uxsg.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-03-06T10:55"
+        },
+        {
+          "file": "mwdyf3u8e47.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-03-06T11:11"
+        },
+        {
+          "file": "mwdyf4yhor1.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-03-06T12:53"
+        },
+        {
+          "file": "mwdyfydx7vk.jpg",
+          "caption": "𝚂𝙿𝙾𝚁𝚃𝚂 𝙳𝙰𝚈",
+          "comment": "",
+          "taken": "2026-03-06T12:29"
+        }
+      ],
+      "cover": "images/inter-house-sports/mwdyfydx7vk.jpg"
     },
     {
       "id": "science-fair",
@@ -214,7 +240,7 @@
       "photos": [
         {
           "file": "mwdyah42cim.jpg",
-          "caption": "",
+          "caption": "𝙰𝚁𝙼𝙰𝙽𝙳",
           "comment": "",
           "taken": "2026-03-04T14:59"
         },
@@ -223,8 +249,15 @@
           "caption": "",
           "comment": "",
           "taken": "2026-03-04T15:46"
+        },
+        {
+          "file": "mwdybyfw7rt.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-03-04T15:17"
         }
-      ]
+      ],
+      "cover": "images/opening-assembly/mwdyah42cim.jpg"
     }
   ],
   "clips": [],
