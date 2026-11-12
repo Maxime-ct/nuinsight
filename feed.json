@@ -226,10 +226,29 @@
     },
     {
       "id": "founders-day",
-      "title": "Founders day",
+      "title": "Casuals",
       "date": "2026-09-12",
       "folder": "images/founders-day/",
-      "photos": []
+      "photos": [
+        {
+          "file": "mwdyn00mvl5.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-05-10T11:19"
+        },
+        {
+          "file": "mwdyn17bnkk.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-05-10T11:21"
+        },
+        {
+          "file": "mwdynhs0kmk.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-05-10T11:23"
+        }
+      ]
     },
     {
       "id": "music-night",
