@@ -169,7 +169,7 @@ async function addPhotos(files) {
       const blob = await shrink(f);
       const name = Date.now().toString(36) + Math.random().toString(36).slice(2, 5) + ".jpg";
       pending[a.folder + name] = blob; previews[a.folder + name] = URL.createObjectURL(blob);
-      a.photos.push({ file: name, caption: "", comment: "", taken: stamp(f.lastModified) });
+      a.photos.push({ file: name, caption: "", comment: "", taken: stamp(f.lastModified), added: Date.now() });
     } catch (e) { status("Could not read " + f.name, "bad"); }
   }
   touch(); status(connected ? "Ready to publish" : "Connect to GitHub to publish", connected ? "ok" : "bad"); draw();
