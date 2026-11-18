@@ -2,6 +2,280 @@
   "clipsFolder": "clips/",
   "albums": [
     {
+      "id": "sports-day",
+      "title": "SPORTS DAY",
+      "date": "2026-11-18",
+      "folder": "photos/sports-day/",
+      "photos": [
+        {
+          "file": "mwmh8h46gkp.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027849638
+        },
+        {
+          "file": "mwmh8i9fd3c.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027851125
+        },
+        {
+          "file": "mwmh8imeku5.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027851591
+        },
+        {
+          "file": "mwmh8j6rgft.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027852323
+        },
+        {
+          "file": "mwmh8jo6ry9.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027852950
+        },
+        {
+          "file": "mwmh8kc9hlr.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027853817
+        },
+        {
+          "file": "mwmh8kou8k1.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027854271
+        },
+        {
+          "file": "mwmh8l9viva.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027855029
+        },
+        {
+          "file": "mwmh8lt4sjc.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027855721
+        },
+        {
+          "file": "mwmh8m6w5dc.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027856217
+        },
+        {
+          "file": "mwmh8mkors2.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027856713
+        },
+        {
+          "file": "mwmh8mwyxw0.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027857155
+        },
+        {
+          "file": "mwmh8n9na02.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027857612
+        },
+        {
+          "file": "mwmh8nnehjo.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027858106
+        },
+        {
+          "file": "mwmh8o5vjdb.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027858772
+        },
+        {
+          "file": "mwmh8oj9r7k.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027859254
+        },
+        {
+          "file": "mwmh8otz16t.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027859640
+        },
+        {
+          "file": "mwmh8plja4n.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027860631
+        },
+        {
+          "file": "mwmh8pvg3ru.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027860989
+        },
+        {
+          "file": "mwmh8q9o34z.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027861500
+        },
+        {
+          "file": "mwmh8qnw3cu.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027862013
+        },
+        {
+          "file": "mwmh8r2823k.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027862529
+        },
+        {
+          "file": "mwmh8rjrwlj.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027863160
+        },
+        {
+          "file": "mwmh8u5jq74.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027866536
+        },
+        {
+          "file": "mwmh8vqcjy8.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027868580
+        },
+        {
+          "file": "mwmh8xic9eh.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027870886
+        },
+        {
+          "file": "mwmh8z3vsgf.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027872956
+        },
+        {
+          "file": "mwmh90j1ms8.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027874799
+        },
+        {
+          "file": "mwmh91buo3w.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027875834
+        },
+        {
+          "file": "mwmh91zo9k5.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027876693
+        },
+        {
+          "file": "mwmh92dheq3.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027877189
+        },
+        {
+          "file": "mwmh9330swu.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027878109
+        },
+        {
+          "file": "mwmh949sofp.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027879649
+        },
+        {
+          "file": "mwmh94yuban.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:22",
+          "added": 1795027880551
+        },
+        {
+          "file": "mwmh96q8rns.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:23",
+          "added": 1795027882832
+        },
+        {
+          "file": "mwmh97id6b6.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:23",
+          "added": 1795027883845
+        },
+        {
+          "file": "mwmh97x64w5.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:35",
+          "added": 1795027884379
+        },
+        {
+          "file": "mwmh98evzl5.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-18T20:40",
+          "added": 1795027885016
+        }
+      ]
+    },
+    {
       "id": "2026-nu-vision-career-fair-week",
       "title": "2026 NU VISION CAREER FAIR WEEK",
       "date": "2026-10-26",
@@ -225,13 +499,6 @@
       "cover": "images/inter-house-sports/mwdyfydx7vk.jpg"
     },
     {
-      "id": "science-fair",
-      "title": "Science fair",
-      "date": "2026-09-26",
-      "folder": "images/science-fair/",
-      "photos": []
-    },
-    {
       "id": "founders-day",
       "title": "Casuals",
       "date": "2026-09-12",
@@ -256,13 +523,6 @@
           "taken": "2026-05-10T11:23"
         }
       ]
-    },
-    {
-      "id": "music-night",
-      "title": "Music night",
-      "date": "2026-09-05",
-      "folder": "images/music-night/",
-      "photos": []
     },
     {
       "id": "opening-assembly",
