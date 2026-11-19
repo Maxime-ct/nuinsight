@@ -2,6 +2,77 @@
   "clipsFolder": "clips/",
   "albums": [
     {
+      "id": "staff-sabbath",
+      "title": "Staff Sabbath",
+      "date": "2026-11-19",
+      "folder": "photos/staff-sabbath/",
+      "photos": [
+        {
+          "file": "mwnvacush9l.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-19T19:18",
+          "added": 1795111918229
+        },
+        {
+          "file": "mwnvacvjj2q.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-19T19:18",
+          "added": 1795111918255
+        },
+        {
+          "file": "mwnvacwep8b.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-19T19:19",
+          "added": 1795111918287
+        },
+        {
+          "file": "mwnvad1hnk9.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-19T19:22",
+          "added": 1795111918469
+        },
+        {
+          "file": "mwnvad8i5yl.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-19T19:24",
+          "added": 1795111918722
+        },
+        {
+          "file": "mwnvad9d4h7.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-19T19:38",
+          "added": 1795111918753
+        },
+        {
+          "file": "mwnvada7vnq.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-19T19:39",
+          "added": 1795111918784
+        },
+        {
+          "file": "mwnvadireuk.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-19T19:41",
+          "added": 1795111919092
+        },
+        {
+          "file": "mwnvadjzz5k.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-19T19:42",
+          "added": 1795111919135
+        }
+      ]
+    },
+    {
       "id": "sports-day",
       "title": "SPORTS DAY",
       "date": "2026-11-18",
