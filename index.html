@@ -118,7 +118,7 @@ h2{font-size:clamp(26px,4vw,44px)}
 .stack img{filter:grayscale(1);transition:filter .3s}
 .album:hover .stack i:nth-child(1){transform:translate(14px,14px)}
 .album:hover .stack img{filter:grayscale(0)}
-.album h3{font-stretch:115%;font-weight:700;font-size:20px;letter-spacing:-.02em;margin-top:18px;text-transform:lowercase}
+.album h3{font-stretch:115%;font-weight:700;font-size:20px;line-height:1.2;letter-spacing:-.02em;margin-top:18px;text-transform:lowercase;min-height:2.4em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .album .sub{font-size:13px}
 
 /* ---------- recap ---------- */
@@ -572,6 +572,22 @@ function homePage() {
     pollBlock() +
     '<section class="sec"><div class="banner"><div><p>Month recap</p><h2>' + monthName(recapKey).toLowerCase() + '</h2></div><a class="pill" href="#/recap/' + recapKey + '">See the recap</a></div></section>';
 }
+
+/* choose the number of columns so the last row of albums is full (no empty gap), with every card the same size */
+function fitAlbums() {
+  document.querySelectorAll(".albums").forEach((g) => {
+    const n = g.children.length, gap = 28, w = g.clientWidth;
+    const max = Math.max(1, Math.floor((w + gap) / (250 + gap)));
+    let best = max;
+    if (n > max) {
+      let gaps = (max - n % max) % max;
+      for (let c = max - 1; c >= Math.min(2, max); c--) { const e = (c - n % c) % c; if (e < gaps) { best = c; gaps = e; } }
+    }
+    g.style.gridTemplateColumns = "repeat(" + best + ", minmax(0, 1fr))";
+  });
+}
+new MutationObserver(fitAlbums).observe(document.getElementById("view"), { childList: true });
+addEventListener("resize", fitAlbums);
 
 function albumsPage() {
   return '<section class="sec"><div class="sec-head"><h2>albums</h2><span class="sub">' + ALBUMS.length + ' events</span></div><div class="albums">' + ALBUMS.map(albumCard).join("") + '</div></section>';
