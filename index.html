@@ -80,7 +80,7 @@ h2{font-size:clamp(26px,4vw,44px)}
 /* ---------- hero ---------- */
 .hero{display:grid;grid-template-columns:1.35fr 1fr;gap:var(--pad);margin-top:28px;align-items:end}
 .hero-img{aspect-ratio:4/5;max-height:78vh;width:100%;object-fit:cover;filter:grayscale(1);cursor:zoom-in}
-.hero-txt h1{font-size:clamp(44px,8vw,120px);margin:10px 0 22px;overflow-wrap:anywhere}
+.hero-txt h1{font-size:clamp(44px,8vw,120px);margin:10px 0 22px;overflow-wrap:normal;hyphens:none}
 .hero-txt .sub{margin-bottom:26px}
 
 /* ---------- masonry ---------- */
@@ -586,8 +586,18 @@ function fitAlbums() {
     g.style.gridTemplateColumns = "repeat(" + best + ", minmax(0, 1fr))";
   });
 }
-new MutationObserver(fitAlbums).observe(document.getElementById("view"), { childList: true });
-addEventListener("resize", fitAlbums);
+/* shrink the big event title just enough that no word gets cut in half */
+function fitHeroTitle() {
+  const h = document.querySelector(".hero-txt h1");
+  if (!h) return;
+  h.style.fontSize = "";
+  let size = parseFloat(getComputedStyle(h).fontSize);
+  while (h.scrollWidth > h.clientWidth + 1 && size > 28) { size *= 0.94; h.style.fontSize = size + "px"; }
+}
+const fitLayout = () => { fitAlbums(); fitHeroTitle(); };
+new MutationObserver(fitLayout).observe(document.getElementById("view"), { childList: true });
+addEventListener("resize", fitLayout);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLayout);
 
 function albumsPage() {
   return '<section class="sec"><div class="sec-head"><h2>albums</h2><span class="sub">' + ALBUMS.length + ' events</span></div><div class="albums">' + ALBUMS.map(albumCard).join("") + '</div></section>';
