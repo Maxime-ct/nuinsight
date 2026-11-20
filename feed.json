@@ -189,7 +189,8 @@
           "taken": "2026-11-17T20:00",
           "added": 1795112214437
         }
-      ]
+      ],
+      "cover": "photos/staff-sabbath/mwnvgnkdkbn.jpg"
     },
     {
       "id": "sports-day",
@@ -644,52 +645,6 @@
       "cover": "photos/2026-nu-vision-career-fair-week/mwdxuj7pc0i.jpg"
     },
     {
-      "id": "inter-house-sports",
-      "title": "Inter-house sports",
-      "date": "2026-10-03",
-      "folder": "images/inter-house-sports/",
-      "photos": [
-        {
-          "file": "mwdyf38uxsg.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-03-06T10:55"
-        },
-        {
-          "file": "mwdyf3u8e47.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-03-06T11:11"
-        },
-        {
-          "file": "mwdyf4yhor1.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-03-06T12:53"
-        },
-        {
-          "file": "mwdyfydx7vk.jpg",
-          "caption": "𝚂𝙿𝙾𝚁𝚃𝚂 𝙳𝙰𝚈",
-          "comment": "",
-          "taken": "2026-03-06T12:29"
-        },
-        {
-          "file": "mwdyjrlm1mo.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-03-06T12:46"
-        },
-        {
-          "file": "mwgfylrwyq5.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-11-14T15:28",
-          "added": 1794662912445
-        }
-      ],
-      "cover": "images/inter-house-sports/mwdyfydx7vk.jpg"
-    },
-    {
       "id": "founders-day",
       "title": "Photo Dump",
       "date": "2026-09-12",
@@ -721,33 +676,6 @@
           "added": 1795086154503
         }
       ]
-    },
-    {
-      "id": "opening-assembly",
-      "title": "Opening assembly",
-      "date": "2026-08-24",
-      "folder": "images/opening-assembly/",
-      "photos": [
-        {
-          "file": "mwdyah42cim.jpg",
-          "caption": "𝙰𝚁𝙼𝙰𝙽𝙳",
-          "comment": "",
-          "taken": "2026-03-04T14:59"
-        },
-        {
-          "file": "mwdyahfyynx.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-03-04T15:46"
-        },
-        {
-          "file": "mwdybyfw7rt.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-03-04T15:17"
-        }
-      ],
-      "cover": "images/opening-assembly/mwdyah42cim.jpg"
     }
   ],
   "clips": [],
