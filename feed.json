@@ -415,13 +415,6 @@
           "added": 1795027877189
         },
         {
-          "file": "mwmh9330swu.jpg",
-          "caption": "",
-          "comment": "",
-          "taken": "2026-11-18T20:22",
-          "added": 1795027878109
-        },
-        {
           "file": "mwmh949sofp.jpg",
           "caption": "",
           "comment": "",
@@ -462,8 +455,16 @@
           "comment": "",
           "taken": "2026-11-18T20:40",
           "added": 1795027885016
+        },
+        {
+          "file": "mwov4oei2e8.jpg",
+          "caption": "",
+          "comment": "",
+          "taken": "2026-11-20T12:54",
+          "added": 1795172119439
         }
-      ]
+      ],
+      "cover": "photos/sports-day/mwmh98evzl5.jpg"
     },
     {
       "id": "2026-nu-vision-career-fair-week",
