@@ -3,7 +3,7 @@
   "albums": [
     {
       "id": "staff-sabbath",
-      "title": "Staff Sabbath",
+      "title": "STAFF SABBATH",
       "date": "2026-11-19",
       "folder": "photos/staff-sabbath/",
       "photos": [
@@ -408,7 +408,8 @@
           "taken": "2026-11-20T14:44",
           "added": 1795178709457
         }
-      ]
+      ],
+      "cover": "photos/sports-day/mwoyqfdntsc.jpg"
     },
     {
       "id": "2026-nu-vision-career-fair-week",
@@ -589,7 +590,7 @@
     },
     {
       "id": "founders-day",
-      "title": "Photo Dump",
+      "title": "PHOTO DUMP",
       "date": "2026-09-12",
       "folder": "images/founders-day/",
       "photos": [
