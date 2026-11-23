@@ -32,7 +32,7 @@ button,input,select{font:inherit;color:inherit}
 .panel{min-width:0}
 .row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:18px}
 label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mut);font-weight:600}
-input[type=text],input[type=date],input[type=password],input[type=number]{padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);min-width:0}
+input[type=text],input[type=month],input[type=date],input[type=password],input[type=number]{padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);min-width:0}
 .grow{flex:1 1 220px}
 .photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
 .ph{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);display:flex;flex-direction:column}
@@ -57,7 +57,7 @@ dialog .row{margin:8px 0 0;justify-content:flex-end}
   <button class="btn" id="connectBtn" type="button">Connect</button>
   <button class="btn primary" id="publishBtn" type="button" disabled>Publish</button>
 </div>
-<div class="tabs"><button class="on" data-tab="albums" type="button">Albums</button><button data-tab="poll" type="button">Poll</button></div>
+<div class="tabs"><button class="on" data-tab="albums" type="button">Albums</button><button data-tab="poll" type="button">Poll</button><button data-tab="video" type="button">Recap video</button></div>
 <div id="app"></div>
 
 <dialog id="dlg">
@@ -125,7 +125,7 @@ async function publish() {
   try {
     let n = 0;
     for (const k of keys) {
-      status("Uploading photo " + (++n) + " of " + keys.length + "…");
+      status("Uploading file " + (++n) + " of " + keys.length + "…");
       await put(k, await b64(pending[k]), "Studio: add " + k);
       delete pending[k];
     }
@@ -176,7 +176,17 @@ async function addPhotos(files) {
 }
 
 /* ---------- screens ---------- */
-function draw() { tab === "albums" ? drawAlbums() : drawPoll(); }
+function draw() { tab === "albums" ? drawAlbums() : tab === "poll" ? drawPoll() : drawVideo(); }
+
+function drawVideo() {
+  const rv = data.recapVideos = data.recapVideos || {};
+  const rows = Object.entries(rv).sort().reverse().map(([m, v]) => '<div class="opt"><span class="grow"><b>' + esc(m) + '</b> \u00b7 ' + esc(v.title || v.file) + (pending["clips/" + v.file] ? ' <span class="tag">New</span>' : "") + '</span><button class="btn sm" data-vrm="' + esc(m) + '" type="button">Remove</button></div>').join("");
+  $("#app").innerHTML = '<div class="wrap" style="grid-template-columns:1fr"><div class="panel" style="max-width:560px">' +
+    '<p style="margin-top:0">Add a film to a month\u2019s Recap page. Visitors can watch it but get no download button.</p>' +
+    '<div class="row"><label>Month<input type="month" id="vMonth" value="' + today().slice(0, 7) + '"></label><label class="grow">Title<input type="text" id="vTitle" placeholder="e.g. November recap"></label></div>' +
+    '<label class="btn primary" style="flex-direction:row;color:var(--on);cursor:pointer;display:inline-flex">Choose video (MP4)<input type="file" id="vFile" accept="video/mp4" hidden></label>' +
+    '<p class="empty" style="padding:12px 0">Use an MP4 under 90 MB (about 720p works well). Press Publish afterwards.</p>' + rows + '</div></div>';
+}
 
 function drawAlbums() {
   const a = data.albums[cur];
@@ -218,6 +228,7 @@ document.addEventListener("click", (e) => {
   else if (t.dataset.rm) { const a = data.albums[cur], p = a.photos.splice(+t.dataset.rm, 1)[0]; delete pending[a.folder + p.file]; if (a.cover === a.folder + p.file) delete a.cover; touch(); draw(); }
   else if (t.dataset.cover) { const a = data.albums[cur]; a.cover = a.folder + a.photos[+t.dataset.cover].file; touch(); draw(); }
   else if (t.id === "addOpt") { data.poll.options.push({ text:"", votes:0 }); touch(); draw(); }
+  else if (t.dataset.vrm) { const v = data.recapVideos[t.dataset.vrm]; if (v) delete pending["clips/" + v.file]; delete data.recapVideos[t.dataset.vrm]; touch(); draw(); }
   else if (t.dataset.orm) { data.poll.options.splice(+t.dataset.orm, 1); touch(); draw(); }
 });
 document.addEventListener("input", (e) => {
@@ -229,7 +240,18 @@ document.addEventListener("input", (e) => {
   else if (t.dataset.ot) { data.poll.options[+t.dataset.ot].text = t.value; touch(); }
   else if (t.dataset.ov) { data.poll.options[+t.dataset.ov].votes = Math.max(0, +t.value || 0); touch(); }
 });
-document.addEventListener("change", (e) => { if (e.target.id === "aFiles") addPhotos(e.target.files); });
+document.addEventListener("change", (e) => {
+  if (e.target.id === "aFiles") addPhotos(e.target.files);
+  if (e.target.id === "vFile") {
+    const f = e.target.files[0], m = $("#vMonth").value;
+    if (!f) return;
+    if (!m) { status("Pick the month first", "bad"); return; }
+    if (f.size > 90 * 1024 * 1024) { status("That video is over 90 MB. Compress it first.", "bad"); return; }
+    const name = "recap-" + m + "-" + Date.now().toString(36) + ".mp4";
+    (data.recapVideos = data.recapVideos || {})[m] = { file: name, title: $("#vTitle").value.trim() || "recap film" };
+    pending["clips/" + name] = f; touch(); status(connected ? "Ready to publish" : "Connect to GitHub to publish", connected ? "ok" : "bad"); drawVideo();
+  }
+});
 $("#publishBtn").onclick = publish;
 $("#connectBtn").onclick = () => { $("#cOwner").value = cfg.owner || ""; $("#cRepo").value = cfg.repo || ""; $("#cBranch").value = cfg.branch || "main"; $("#cToken").value = cfg.token || ""; $("#dlg").showModal(); };
 $("#cCancel").onclick = () => $("#dlg").close();
