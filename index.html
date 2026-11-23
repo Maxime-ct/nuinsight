@@ -131,6 +131,7 @@ h2{font-size:clamp(26px,4vw,44px)}
 .months a.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .stats{display:flex;gap:clamp(24px,6vw,80px);margin:36px 0}
 .stats b{display:block;font-stretch:125%;font-weight:800;font-size:clamp(36px,6vw,72px);letter-spacing:-.04em;line-height:1}
+.recap-video{background:#000;margin-bottom:8px}.recap-video video{display:block;width:100%;max-height:78vh;background:#000}
 .top-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:minmax(160px,22vw);gap:10px}
 .top-grid .ph{margin:0}
 .top-grid .ph:first-child{grid-row:span 2}
@@ -595,6 +596,8 @@ function fitHeroTitle() {
   while (h.scrollWidth > h.clientWidth + 1 && size > 28) { size *= 0.94; h.style.fontSize = size + "px"; }
 }
 const fitLayout = () => { fitAlbums(); fitHeroTitle(); };
+document.addEventListener("contextmenu", (e) => { if (e.target.closest(".recap-video")) e.preventDefault(); });   /* no right-click "Save video as" */
+document.addEventListener("dragstart", (e) => { if (e.target.closest(".recap-video")) e.preventDefault(); });
 new MutationObserver(fitLayout).observe(document.getElementById("view"), { childList: true });
 addEventListener("resize", fitLayout);
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLayout);
@@ -614,6 +617,15 @@ function clipsPage() {
   return '<section class="sec"><div class="sec-head"><h2>clips</h2></div><div class="clips wrap">' + CLIPS.map(clipCard).join("") + '</div></section>';
 }
 
+/* an optional film for the month, set in Studio (feed.json: recapVideos). Download controls are removed. */
+function recapVideo(key) {
+  const v = (SITE.recapVideos || {})[key];
+  if (!v || !v.file) return "";
+  const src = v.url || (SITE.clipsFolder || "clips/") + v.file;
+  return '<div class="sec-head"><h2 class="small">' + (v.title || "recap film") + '</h2></div>' +
+    '<div class="recap-video"><video src="' + src + '" controls controlsList="nodownload noplaybackrate" disablePictureInPicture disableRemotePlayback playsinline preload="metadata"></video></div>';
+}
+
 function recapPage(key) {
   key = key || MONTH_KEYS.find((k) => k === monthKey(new Date())) || MONTH_KEYS[0];
   const list = PHOTOS.filter((p) => monthKey(p.date) === key);
@@ -624,6 +636,7 @@ function recapPage(key) {
   const monthWord = MONTHS[+key.split("-")[1] - 1].toLowerCase();
   return '<section class="sec"><div class="sec-head"><h2>' + monthName(key).toLowerCase() + ' recap</h2></div>' + monthButtons(key) +
     '<div class="stats"><div><b>' + list.length + '</b>photos</div><div><b>' + events + '</b>events</div><div><b>' + likes + '</b>likes</div></div>' +
+    recapVideo(key) +
     '<div class="sec-head"><h2 class="small">most liked</h2></div><div class="top-grid">' + top.map(photoCard).join("") + '</div></section>' +
     '<section class="sec"><div class="sec-head"><h2 class="small">everything from ' + monthWord + '</h2></div>' + wall(list) + '</section>';
 }
